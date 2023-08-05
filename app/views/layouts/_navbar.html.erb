@@ -3,7 +3,7 @@
     <a class="navbar-brand" style="font-family: Ariel; font-size: 26px" href="/">
       ご近所Walker
     </a>
-    <% if users_signed_in? %>
+    <% if user_signed_in? %>
       <p class="m-0">ようこそ <%= "#{current_customer.name}" %> さん</p>
     <% end %>
     <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -15,7 +15,7 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
       <div>
         <div class="navbar-nav">
-          <% if users_signed_in? %>
+          <% if user_signed_in? %>
             <li class="nav-item px-3">
               <%= link_to "マイページ", customers_mypage_path, class: 'nav-link'  %>
             </li>
