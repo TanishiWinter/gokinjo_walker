@@ -11,6 +11,13 @@
   </head>
 
   <body>
+    <%= render 'layouts/navbar' %>
+    <% if flash[:notice].present? %>
+    <div class="text-center margin-y">
+      <%= flash[:notice]%>
+    </div>
+    <% end %>
     <%= yield %>
+    <%= render 'layouts/footer' %>
   </body>
 </html>

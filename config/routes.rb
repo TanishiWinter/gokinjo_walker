@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
-  root to: 'homes#top'
+  root to: 'public/homes#top'
 
-  devise_for :users
+# 顧客用
+scope module: :public do
   get 'homes/about' => 'homes#about'
   get 'comments/create'
   get 'comments/destroy'
@@ -17,6 +18,12 @@ Rails.application.routes.draw do
     end
       resource :relationships, only: [:create, :destroy]
   end
+end
+# URL /customers/sign_in ...
+devise_for :customers,skip: [:passwords], controllers: {
+  registrations: "public/registrations",
+  sessions: 'public/sessions'
+}
 
 
 # 管理者用
@@ -29,6 +36,5 @@ Rails.application.routes.draw do
 devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
-
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
