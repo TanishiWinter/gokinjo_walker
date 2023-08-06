@@ -8,6 +8,7 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @postimages = @user.post_images
   end
 
   def edit
@@ -16,7 +17,7 @@ class Admin::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(customer_params)
+    if @user.update(user_params)
       redirect_to admin_user_path(@user.id), notice: "変更を保存しました"
     else
       render :edit
