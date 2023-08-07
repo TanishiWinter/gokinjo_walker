@@ -2,13 +2,13 @@
   <p>
     <%= link_to postimage_favorites_path(postimage), method: :delete, remote: true, data: {"turbolinks" => false} do %>
       <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
-      <span style="color: red;"><%= postimage.favorites.count %></span>
+      <span style="color: red;"><%= postimage.favorites.count %>いいね</span>
     <% end %>
   </p>
   <% else %>
   <p>
       <%= link_to postimage_favorites_path(postimage), method: :post, remote: true, data: {"turbolinks" => false} do %>
-        ♡<%= postimage.favorites.count %>
+        ♡<%= postimage.favorites.count %>いいね
       <% end %>
   </p>
 <% end %>
