@@ -1,2 +1,30 @@
-<h1>Postimages#show</h1>
-<p>Find me in app/views/postimages/show.html.erb</p>
+<div class="container">
+
+  <h4 class="margin-y">投稿詳細</h4>
+  <div class='row align-items-center justify-content-center'>
+    <div class='col-md-4 admin-item-image' >
+      <% if @postimage.image.attached? %>
+        <%= image_tag @postimage.image, size:'100×100' %>
+      <% else %>
+        <%= image_tag 'no_image', size: '100×100' %>
+      <% end %>
+    </div>
+
+      <div class='col-md-8 mt-3'>
+        <table class="table table-bordered table-light">
+          <tr>
+            <td class="bg-brown">タイトル</td>
+            <td><%= @postimage.title %></td>
+          </tr>
+          <tr>
+            <td class="bg-brown">説明</td>
+            <td><%= @postimage.body %></td>
+          </tr>
+        </table>
+      </div>
+      <div class="text-center">
+          <%= link_to "編集する", edit_postimage_path(@postimage.id), class: "btn btn-success padding-x" %>
+      </div>
+
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<table class='table'>
+  <tr>
+    <td>
+      <%= f.label :image, "風景写真を選択", class: "label-width" %>
+    </td>
+    <td>
+      <%= f.file_field :image, accept: "image/*" %>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <%= f.label :title, "風景写真のタイトル", class: "label-width" %>
+    </td>
+    <td>
+      <%= f.text_field :title, placeholder: "商品名", class: "field-width" %>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <%= f.label :body, "風景写真の紹介", class: "label-width" %>
+    </td>
+    <td>
+      <%= f.text_area :body, placeholder: "ここに説明文を記述します", class: "field-width" %>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <%= f.label :address, "写真の所在地", class: "label-width" %>
+    </td>
+    <td>
+      <%= f.text_area :address, placeholder: "例:〇〇県〇〇市〇〇町", class: "field-width" %>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <p class="label-width label-name">公開・非公開</p>
+    </td>
+    <td>
+      <span>
+        <%= f.radio_button :is_active, true %>
+        <%= f.label :is_active_true, "公開" %>
+      </span>
+      <span class="margin-x">
+        <%= f.radio_button :is_active, false %>
+        <%= f.label :is_active_false, "非公開" %>
+      </span>
+    </td>
+  </tr>
+</table>

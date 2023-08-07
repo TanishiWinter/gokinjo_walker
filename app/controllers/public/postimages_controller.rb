@@ -1,4 +1,7 @@
 class Public::PostimagesController < ApplicationController
+
+
+
   def new
     @postimage = PostImage.new
   end
@@ -8,7 +11,7 @@ class Public::PostimagesController < ApplicationController
   end
 
   def create
-    @postimage = PostImage.new(book_params)
+    @postimage = PostImage.new(post_image_params)
     @postimage.user_id = current_user.id
     if @postimage.save
       redirect_to postimage_path(@postimage), notice:  "You have created book successfully."
@@ -19,7 +22,7 @@ class Public::PostimagesController < ApplicationController
   end
 
   def edit
-    @postimage = PostImage.new(book_params)
+    @postimage = PostImage.find(params[:id])
   end
 
   def show
@@ -29,7 +32,7 @@ class Public::PostimagesController < ApplicationController
 
   def update
     @postimage = PostImage.find(params[:id])
-    if @postimage.update(postimage_params)
+    if @postimage.update(post_image_params)
       redirect_to postimage_path(@postimage), notice: "You have updated book successfully."
     else
       render "edit"
@@ -44,8 +47,8 @@ class Public::PostimagesController < ApplicationController
 
   private
 
-  def postimage_params
-    params.require(:postimage).permit(:title, :body, :image)
+  def post_image_params
+    params.require(:post_image).permit(:title, :body, :address, :image)
   end
 
   def is_matching_login_user

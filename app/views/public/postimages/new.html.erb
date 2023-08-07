@@ -1,2 +1,12 @@
-<h1>Postimages#new</h1>
-<p>Find me in app/views/postimages/new.html.erb</p>
+<div class="container" style="width: fit-content">
+  <div class="sub_container_position">
+    <h4><span>新規投稿</span></h4>
+    <%= form_with model: @postimage, url: postimages_path do |f| %>
+    <%= render "layouts/form_errors", model: @postimage %>
+    <%= render 'public/postimages/form', f: f %>
+    <div class="actions text-center">
+      <%= f.submit "新規登録", class: "btn btn-success padding-x" %>
+    </div>
+    <% end %>
+  </div>
+</div>

@@ -34,6 +34,7 @@ scope module: :public do
     end
       resource :relationships, only: [:create, :destroy]
   end
+  
 end
 
 

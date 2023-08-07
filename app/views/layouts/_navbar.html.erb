@@ -20,7 +20,7 @@
               <%= link_to "マイページ", user_path(current_user.id), class: 'nav-link'  %>
             </li>
             <li class="nav-item px-3">
-              <%= link_to "写真投稿", edit_postimage_path(current_user.id), class: 'nav-link'  %>
+              <%= link_to "写真投稿", new_postimage_path, class: 'nav-link'  %>
             </li>
             <li class="nav-item px-3">
               <%= link_to "投稿一覧", postimages_path, class: 'nav-link'  %>
