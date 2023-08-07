@@ -32,7 +32,7 @@ class Public::SessionsController < Devise::SessionsController
   # end
 
   def reject_invalid_user
-    user = user.find_by(email: params[:user][:email])
+    user = User.find_by(email: params[:user][:email])
     # 会員情報が存在する場合
     if user
       if user.valid_password?(params[:user][:password]) && (user.is_deleted == true )
