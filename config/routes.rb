@@ -39,6 +39,7 @@ end
 # 管理者用
   namespace :admin do
     get '/' => 'homes#top'
+    get "search", to: 'searches#search'
     resources :postimages, only: [:index, :show, :edit, :update, :destroy] do
       resources :comments, only: [:create, :destroy]
     end

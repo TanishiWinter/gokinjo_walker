@@ -1,0 +1,13 @@
+<div class="margin-y container">
+  <div class="row">
+    <main class="col-md-9">
+      <% if @range == "User" %>
+        <h2>"<%= @word %>"を含む商品が<%= @users.count %>件あります</h2>
+        <%= render 'admin/users/index', users: @users %>
+      <% else %>
+        <h2>"<%= @word %>"を含む商品が<%= @postimage_address.count %>件あります</h2>
+        <%= render 'public/postimages/index', postimages: @postimage_address %>
+      <% end %>
+    </main>
+  </div>
+</div>
