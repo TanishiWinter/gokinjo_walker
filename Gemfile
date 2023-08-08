@@ -66,3 +66,5 @@ gem 'gmaps4rails'
 gem 'geocoder'
 
 gem 'gon'
+
+gem 'image_processing', '~> 1.2'

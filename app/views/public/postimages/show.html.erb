@@ -3,18 +3,14 @@
   <h4 class="margin-y">投稿詳細</h4>
   <div class='row align-items-center justify-content-center'>
     <div class='col-md-4 admin-item-image' >
-      <% if @postimage.image.attached? %>
-        <%= image_tag @postimage.image, size:'100×100' %>
-      <% else %>
-        <%= image_tag 'no_image', size: '100×100' %>
-      <% end %>
+      <%= image_tag @postimage.user.get_profile_image(200, 150) %>
     </div>
 
       <div class='col-md-8 mt-3'>
         <table class="table table-bordered table-light">
           <tr>
             <td><%= link_to(@postimage.user) do %>
-            <%= image_tag @postimage.user.get_profile_image, size:'100×100' %><br>
+            <%= image_tag @postimage.get_image(200, 150) %><br>
             <%= @postimage.user.name %>
           <% end %>
           </td>
@@ -40,18 +36,6 @@
             </td>
           </tr>
         </table>
-
-         <div>
-          <p>コメント件数：<%= @postimage.comments.count %></p>
-          <% @postimage.comments.each do |comment| %>
-            <p><%= image_tag comment.user.get_profile_image, size:'100×100' %></p>
-            <%= comment.user.name %>
-            <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
-            <% if comment.user == current_user %>
-              <%= link_to "削除", postimage_comment_path(comment.post_image, comment), method: :delete %>
-            <% end %>
-          <% end %>
-        </div>
         <div>
           <%= form_with model: [@postimage, @postimage_comment], url: postimage_comments_path(@postimage.id) do |f| %>
             <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
@@ -60,4 +44,31 @@
         </div>
       </div>
   </div>
+      <div class='row align-items-center justify-content-center' >
+         <table>
+            <tr>
+              <td>
+                <p>コメント件数：<%= @postimage.comments.count %></p>
+              </td>
+            </tr>
+            <% @postimage.comments.each do |comment| %>
+            <tr>
+              <td>
+                <p><%= image_tag comment.user.get_profile_image(50, 50) %></p>
+                <%= comment.user.name %>
+              </td>
+              <td>
+                 <%= comment.created_at.strftime('%Y/%m/%d') %></br>
+                 <%= comment.comment %>
+              </td>
+              <td>
+                </br>
+                 <% if comment.user == current_user %>
+                   <%= link_to "削除", postimage_comment_path(comment.post_image, comment), method: :delete %>
+                 <% end %>
+              </td>
+            </tr>
+            <% end %>
+        </table>
+      </div>
 </div>

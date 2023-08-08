@@ -12,11 +12,7 @@
     <% postimages.each do |postimage| %>
       <tr>
         <td>
-          <% if postimage.image.attached? %>
-            <%= image_tag postimage.image, size:'100×100' %>
-          <% else %>
-            <%= image_tag 'no_image', size: '100×100' %>
-          <% end %>
+          <%= image_tag postimage.get_image(200, 150) %>
         </td>
         <td><%= link_to postimage.title,postimage_path(postimage.id) %></td>
         <td><%= postimage.body %></td>
