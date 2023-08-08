@@ -1,7 +1,5 @@
 class Public::PostimagesController < ApplicationController
 
-
-
   def new
     @postimage = PostImage.new
   end

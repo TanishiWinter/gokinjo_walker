@@ -17,15 +17,14 @@
         <td><%= user.name %></td>
         <td>
           <%= link_to follows_user_path(user) do %>
-          <h6>フォロー数:<%= user.following_user.count %></h6>
+          <h6>フォロー数:<%= user.following_users.count %></h6>
           <% end %>&nbsp;&nbsp;
         </td>
         <td>
           <%= link_to followers_user_path(user) do %>
-          <h6>フォロワー<%= user.follower_user.count %></h6>
+          <h6>フォロワー<%= user.follower_users.count %></h6>
           <% end %>
         </td>
-
         <td><%= link_to 'Show', user %></td>
       </tr>
     <% end %>

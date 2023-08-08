@@ -19,8 +19,6 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 scope module: :public do
   post 'homes/guest_sign_in', to: 'homes#guest_sign_in'
   get 'homes/about' => 'homes#about'
-  get 'comments/create'
-  get 'comments/destroy'
   get 'users/confirm' => 'users#confirm'
   patch 'users/withdraw' => 'users#withdraw'
   resources :postimages, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
@@ -34,7 +32,7 @@ scope module: :public do
     end
       resource :relationships, only: [:create, :destroy]
   end
-  
+
 end
 
 
