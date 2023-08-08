@@ -44,11 +44,11 @@
          <div>
           <p>コメント件数：<%= @postimage.comments.count %></p>
           <% @postimage.comments.each do |comment| %>
-            <p><%= image_tag comment.user.get_profile_image(100,100) %></p>
+            <p><%= image_tag comment.user.get_profile_image, size:'100×100' %></p>
             <%= comment.user.name %>
             <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
             <% if comment.user == current_user %>
-              <%= link_to "削除", postimage_comment_path(comment.postimage, comment), method: :delete %>
+              <%= link_to "削除", postimage_comment_path(comment.post_image, comment), method: :delete %>
             <% end %>
           <% end %>
         </div>
