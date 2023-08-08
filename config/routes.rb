@@ -20,13 +20,13 @@ scope module: :public do
   post 'homes/guest_sign_in', to: 'homes#guest_sign_in'
   get 'homes/about' => 'homes#about'
   get 'users/confirm' => 'users#confirm'
+  get "search", to: 'searches#search'
   patch 'users/withdraw' => 'users#withdraw'
   resources :postimages, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
     resources :comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
   end
   resources :users, only: [:index,:show,:edit,:update] do
-    get "search", to: "users#search"
     member do
       get :follows, :followers
     end
