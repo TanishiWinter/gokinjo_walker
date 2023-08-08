@@ -1,2 +1,14 @@
-<h1>Admin::Postimages#edit</h1>
-<p>Find me in app/views/admin/postimages/edit.html.erb</p>
+<div class="container" style="width: fit-content">
+  <div class="sub_container_position">
+    <h4><span>投稿内容編集</span></h4>
+    <%= form_with model: @postimage, url: postimage_path(@postimage.id) do |f| %>
+    <%= render "layouts/form_errors", model: @postimage %>
+    <%= render 'public/postimages/form', f: f %>
+    <div class="actions text-center">
+      <%= f.submit "編集完了", class: "btn btn-success padding-x" %>
+    </div>
+    <% end %>
+    <%= link_to 'Show', admin_postimage_path(@postimage) %> |
+  	<%= link_to 'Back', admin_postimage_path(@postimage), class: "back" %>
+  </div>
+</div>
