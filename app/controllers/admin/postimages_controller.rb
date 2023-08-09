@@ -3,7 +3,7 @@ class Admin::PostimagesController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @postimages = PostImage.all
+    @postimages = PostImage.page(params[:page])
   end
 
   def show

@@ -2,6 +2,7 @@
   <div class="margin-y">
       <h2>投稿一覧</h2>
       <%= render 'admin/postimages/index', postimages: @postimages %>
+      <%= paginate @postimages %>
   </div>
 </div>
 

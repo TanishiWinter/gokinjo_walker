@@ -7,9 +7,9 @@ class Public::SearchesController < ApplicationController
     @word = params[:word]
 
     if @range == "User"
-      @users = User.where('name LIKE ?', "%#{@word}%")
+      @users = User.where('name LIKE ?', "%#{@word}%").page(params[:page])
     else
-      @postimage_address = PostImage.where('address LIKE ?', "%#{@word}%")
+      @postimage_address = PostImage.where('address LIKE ?', "%#{@word}%").page(params[:page])
     end
 
   end

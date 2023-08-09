@@ -4,21 +4,22 @@ class Public::UsersController < ApplicationController
 
   def follows
     user = User.find(params[:id])
-    @users = user.following_users
+    @users = user.following_users.page(params[:page])
   end
 
   # フォロワー一覧
   def followers
     user = User.find(params[:id])
-    @users = user.follower_users
+    @users = user.follower_users.page(params[:page])
   end
 
   def index
+    @users = User.page(params[:page])
   end
 
   def show
     @user = User.find(params[:id])
-    @postimages = @user.post_images
+    @postimages = @user.post_images.page(params[:page])
     @following_users = @user.following_users
     @follower_users = @user.follower_users
   end

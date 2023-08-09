@@ -2,5 +2,6 @@
   <div class="margin-y">
     <h4>会員一覧</h4>
     <%= render 'admin/users/index', users: @users %>
+    <%= paginate @users %>
   </div>
 </div>

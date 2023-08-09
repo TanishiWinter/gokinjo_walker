@@ -5,7 +5,7 @@ class Public::PostimagesController < ApplicationController
   end
 
   def index
-    @postimages = PostImage.all
+    @postimages = PostImage.page(params[:page])
   end
 
   def create
@@ -14,7 +14,7 @@ class Public::PostimagesController < ApplicationController
     if @postimage.save
       redirect_to postimage_path(@postimage), notice:  "You have created book successfully."
     else
-      @postimages = PostImage.all
+      @postimages = PostImage.page(params[:page])
       render 'index'
     end
   end
