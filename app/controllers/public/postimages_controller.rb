@@ -26,6 +26,7 @@ class Public::PostimagesController < ApplicationController
   def show
     @postimage = PostImage.find(params[:id])
     @postimage_comment = Comment.new
+    gon.studio = @postimage #google map用
   end
 
   def update

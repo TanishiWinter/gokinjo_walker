@@ -8,6 +8,9 @@ class PostImage < ApplicationRecord
   validates :title,presence:true
   validates :body,presence:true
 
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
+
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
@@ -18,6 +21,15 @@ class PostImage < ApplicationRecord
       image.attach(io: File.open(file_path), filename: 'no-image.jpg', content_type: 'image/jpeg')
     end
     image.variant(resize_to_limit: [width, height]).processed
+  end
+
+  before_save :convert_coordinates
+
+  private
+
+  def convert_coordinates
+    self.latitude = self.latitude.to_f  # 必要に応じて変換処理を追加
+    self.longitude = self.longitude.to_f
   end
 
 end

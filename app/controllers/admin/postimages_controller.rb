@@ -8,6 +8,8 @@ class Admin::PostimagesController < ApplicationController
 
   def show
     @postimage = PostImage.find(params[:id])
+    @latitude = @postimage.latitude
+    @longitude = @postimage.longitude
   end
 
   def edit
