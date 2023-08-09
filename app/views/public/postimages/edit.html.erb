@@ -4,6 +4,84 @@
     <%= form_with model: @postimage, url: postimage_path(@postimage.id) do |f| %>
     <%= render "layouts/form_errors", model: @postimage %>
     <%= render 'public/postimages/form', f: f %>
+
+    <div class="field">
+    <%= f.label :latitude %>
+    <%= f.number_field :latitude, step: 'any', id: 'latitude_field' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :longitude %>
+    <%= f.number_field :longitude, step: 'any', id: 'longitude_field' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :search_location %>
+    <%= text_field_tag :search_location, nil, id: 'search_location_field' %>
+    <button type="button" id="search_button">Search</button>
+  </div>
+
+  <div style="width: 100%; height: 400px;">
+    <div id="map" style="width: 100%; height: 100%;"></div>
+  </div>
+
+  <script>
+    var map;
+    var marker;
+    var initialLocation = { lat: <%= @postimage.latitude %>, lng: <%= @postimage.longitude %> };
+
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 14,
+        center: initialLocation
+      });
+
+      marker = new google.maps.Marker({
+        position: initialLocation,
+        map: map
+      });
+
+      map.addListener('click', function(event) {
+        placeMarker(event.latLng);
+      });
+
+      var searchButton = document.getElementById('search_button');
+      var searchField = document.getElementById('search_location_field');
+
+      searchButton.addEventListener('click', function() {
+        var geocoder = new google.maps.Geocoder();
+        var address = searchField.value;
+
+        geocoder.geocode({ 'address': address }, function(results, status) {
+          if (status === google.maps.GeocoderStatus.OK) {
+            var location = results[0].geometry.location;
+            map.setCenter(location);
+            placeMarker(location);
+          } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+          }
+        });
+      });
+    }
+
+    function placeMarker(location) {
+      if (marker) {
+        marker.setMap(null);
+      }
+
+      marker = new google.maps.Marker({
+        position: location,
+        map: map
+      });
+
+      document.getElementById('latitude_field').value = location.lat();
+      document.getElementById('longitude_field').value = location.lng();
+    }
+  </script>
+
+  <!-- Asynchronously load the Google Maps API with the callback to initMap function -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap" async defer></script>
+
     <div class="actions text-center">
       <%= f.submit "編集完了", class: "btn btn-success padding-x" %>
     </div>
