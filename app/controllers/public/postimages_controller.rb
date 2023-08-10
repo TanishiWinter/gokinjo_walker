@@ -1,11 +1,13 @@
 class Public::PostimagesController < ApplicationController
 
+  before_action :set_cache_headers
+
   def new
     @postimage = PostImage.new
   end
 
   def index
-    @postimages = PostImage.page(params[:page])
+    @postimages = PostImage.where.not(is_active: false).page(params[:page])
   end
 
   def create
@@ -24,9 +26,16 @@ class Public::PostimagesController < ApplicationController
   end
 
   def show
-    @postimage = PostImage.find(params[:id])
-    @postimage_comment = Comment.new
-    gon.studio = @postimage #google map用
+
+    begin
+      @postimage = PostImage.find(params[:id])
+      @postimage_comment = Comment.new
+      gon.studio = @postimage #google map用
+    rescue ActiveRecord::RecordNotFound
+      flash[:alert] = 'Post not found'
+      redirect_to postimages_path
+    end
+
   end
 
   def update
@@ -46,8 +55,14 @@ class Public::PostimagesController < ApplicationController
 
   private
 
+  def set_cache_headers
+    response.headers['Cache-Control'] = 'no-cache, no-store, max-age=0, must-revalidate'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = 'Fri, 01 Jan 1990 00:00:00 GMT'
+  end
+
   def post_image_params
-    params.require(:post_image).permit(:title, :body, :address, :image, :latitude, :longitude)
+    params.require(:post_image).permit(:title, :body, :address, :is_active, :image, :latitude, :longitude)
   end
 
   def is_matching_login_user
@@ -56,5 +71,7 @@ class Public::PostimagesController < ApplicationController
       redirect_to postimages_path
     end
   end
+
+
 
 end

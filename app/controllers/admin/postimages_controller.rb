@@ -34,7 +34,7 @@ class Admin::PostimagesController < ApplicationController
   private
 
   def post_image_params
-    params.require(:post_image).permit(:title, :body, :address, :image, :latitude, :longitude)
+    params.require(:post_image).permit(:title, :body, :address, :is_active, :image, :latitude, :longitude)
   end
 
 end
