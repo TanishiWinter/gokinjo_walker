@@ -31,7 +31,7 @@ class Public::PostimagesController < ApplicationController
       @postimage = PostImage.find(params[:id])
       @postimage_comment = Comment.new
       gon.studio = @postimage #google map用
-    rescue ActiveRecord::RecordNotFound
+    rescue
       flash[:alert] = 'Post not found'
       redirect_to postimages_path
     end
