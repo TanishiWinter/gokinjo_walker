@@ -1,28 +1,26 @@
 <table class='table table-hover table-inverse'>
-  <thead>
-    <tr>
-      <th></th>
-      <th>投稿写真</th>
-      <th>タイトル/場所</th>
-      <th>投稿者</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
   <tbody>
     <% postimages.each do |postimage| %>
       <tr>
-        <td>
-          <%= image_tag postimage.get_image(200, 150) %>
+        <td class="text-center"> <!-- 新しい行を追加 -->
+          <div class="card" style="width: auto;">
+            <%= link_to postimage_path(postimage.id) do %>
+              <%= image_tag postimage.get_image(500, 450),
+                      class: "img-resize, rounded mx-auto d-block",
+                      style: "object-fit: cover;" %>
+            <% end %>
+            <div class="card-body">
+              <h4 class="card-title">タイトル:<%= link_to postimage.title,postimage_path(postimage.id) %></h4>
+              <h5 class="card-text">投稿者:<%=link_to postimage.user.name,user_path(postimage.user.id) %></h5>
+              <p class="card-text">説明:<%= postimage.body %></p>
+              <p class="card-text">
+                <div id="favorite_buttons_<%= postimage.id %>" >
+                  <%= render "public/favorites/favorite", postimage: postimage %>
+                </div>
+              </p>
+            </div>
+          </div>
         </td>
-        <td><%= link_to postimage.title,postimage_path(postimage.id) %></td>
-        <td><%= postimage.body %></td>
-        <!--いいね機能-->
-        <td id="favorite_buttons_<%= postimage.id %>" >
-            <%= render "public/favorites/favorite", postimage: postimage %>
-        </td>
-　　　　<td>
-　　　　  <p><%= link_to "#{postimage.comments.count} コメント", postimage_path(postimage.id) %></p>
-　　　　</td>
       </tr>
     <% end %>
   </tbody>

@@ -13,7 +13,7 @@ class Admin::PostimagesController < ApplicationController
       gon.studio = @postimage #google map用
     rescue
       flash[:alert] = 'Post not found'
-      redirect_to postimages_path
+      redirect_to admin_postimages_path
     end
   end
 
@@ -24,7 +24,7 @@ class Admin::PostimagesController < ApplicationController
   def update
     @postimage = PostImage.find(params[:id])
     if @postimage.update(post_image_params)
-      redirect_to postimage_path(@postimage), notice: "You have updated book successfully."
+      redirect_to admin_postimage_path(@postimage), notice: "You have updated book successfully."
     else
       render "edit"
     end
@@ -33,7 +33,7 @@ class Admin::PostimagesController < ApplicationController
   def destroy
     @postimage = PostImage.find(params[:id])
     @postimage.delete
-    redirect_to postimages_path
+    redirect_to admin_postimages_path
   end
 
   private
