@@ -13,6 +13,10 @@
         <%= f.text_field :name, class: "form-control name" %>
       </div>
       <div class="form-group">
+        <%= f.label :introduction %>
+        <%= f.text_field :introduction, value: @user.introduction.present? ? @user.introduction : 'よろしくお願いします', class: 'form-control' %>
+      </div>
+      <div class="form-group">
         <%= f.submit class: 'btn btn-secondary' %>
       </div>
       <div class="actions d-flex justify-content-around">

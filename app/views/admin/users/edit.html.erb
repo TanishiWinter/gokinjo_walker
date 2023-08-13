@@ -12,6 +12,10 @@
         <%= f.label :name %>
         <%= f.text_field :name, class: "form-control name" %>
       </div>
+      <div class="form-group">
+        <%= f.label :introduction %>
+        <%= f.text_field :introduction, value: @user.introduction.present? ? @user.introduction : 'よろしくお願いします', class: 'form-control' %>
+      </div>
       <div class="d-flex padding-sm-y">
         <p class="label-width label-name">ユーザーステータス</p>
         <%= f.radio_button :is_deleted, false %>
