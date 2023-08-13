@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-10 offset-md-1">
       <div class="card">
-        <%= link_to postimage_path(@postimage.id) do %>
+        <%= link_to @postimage.get_image(1000, 8000), data: { lightbox: "postimage" } do %>
           <%= image_tag @postimage.get_image(800, 650),
                   class: "img-resize, rounded mx-auto d-block",
                   style: "object-fit: cover;" %>

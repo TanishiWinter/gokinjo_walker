@@ -1,47 +1,85 @@
-<div class="container">
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <div class="card">
+        <%= link_to admin_postimage_path(@postimage.id) do %>
+          <%= image_tag @postimage.get_image(800, 650),
+                  class: "img-resize, rounded mx-auto d-block",
+                  style: "object-fit: cover;" %>
+        <% end %>
+        <div class="card-body">
+          <h3 class="card-title">タイトル:<%= @postimage.title %></h3>
+          <p class="card-text">
+            投稿者:
+            <%= link_to(@postimage.user) do %>
+              <%= image_tag @postimage.user.get_profile_image(70, 70),
+                  class: "img-resize",
+                  style: "object-fit: cover;" %>
+              <%=link_to @postimage.user.name,admin_user_path(@postimage.user.id) %>
+            <% end %>
+          </p>
+          <p class="card-text">紹介文:<%= @postimage.body %></p>
 
-  <h4 class="margin-y">投稿詳細</h4>
-  <div class='row align-items-center justify-content-center'>
-    <div class='col-md-4 admin-item-image' >
-      <%= image_tag @postimage.user.get_profile_image(200, 150) %>
-    </div>
+          <div style="padding-top: 30px; padding-bottom: 30px;">
+            <div style="width: 100%; height: 400px;">
+              <div id="map" style="width: 100%; height: 100%;"></div>
+          </div>
 
-      <div class='col-md-8 mt-3'>
-        <table class="table table-bordered table-light">
-          <tr>
-            <td><%= link_to(@postimage.user) do %>
-            <%= image_tag @postimage.get_image(200, 150) %><br>
-            <%= @postimage.user.name %>
-          <% end %>
-          </td>
-            </tr>
-          <tr>
-            <td class="bg-brown">タイトル</td>
-            <td><%= @postimage.title %></td>
-          </tr>
-          <tr>
-            <td class="bg-brown">説明</td>
-            <td><%= @postimage.body %></td>
-          </tr>
-          <tr>
-            <td>
-              <%= link_to "編集する", edit_admin_postimage_path(@postimage.id), class: "btn btn-success padding-x" %>
+            <script>
+              function initMap() {
+                var location = { lat: <%= @postimage.latitude %>, lng: <%= @postimage.longitude %> };
+                var map = new google.maps.Map(document.getElementById('map'), {
+                  zoom: 14,
+                  center: location
+                });
+                var marker = new google.maps.Marker({
+                  position: location,
+                  map: map
+                });
+              }
+            </script>
+
+            <!-- Asynchronously load the Google Maps API with the callback to initMap function -->
+            <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap" async defer></script>
+          </div>
+          <td>
+              <% if @postimage.user == current_user %>
+                <%= link_to "編集する", edit_admin_postimage_path(@postimage.id), class: "btn btn-success padding-x" %>
+              <% end %>
             </td>
             <td>
-              <%= link_to 'Destroy', admin_postimage_path(@postimage.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%>
+              <% if @postimage.user == current_user %>
+                <%= link_to 'Destroy', admin_postimage_path(@postimage.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%>
+              <% end %>
             </td>
-          </tr>
-        </table>
-
-         <div>
-          <p>コメント件数：<%= @postimage.comments.count %></p>
-          <% @postimage.comments.each do |comment| %>
-            <p><%= image_tag comment.user.get_profile_image(50, 50) %></p>
-            <%= comment.user.name %>
-            <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
-            <%= link_to "削除", admin_postimage_comment_path(comment.post_image, comment), method: :delete %>
-          <% end %>
+          <h4 class="mb-3">コメント</h4><p>コメント件数：<%= @postimage.comments.count %></p>
+          <div class="media mb-3">
+            <div class="media-body">
+              <% @postimage.comments.each do |comment| %>
+                <%= image_tag comment.user.get_profile_image(50, 50) %><h5 class="mt-0"><%= comment.user.name %></h5>
+                <%= comment.created_at.strftime('%Y/%m/%d') %></br>
+                 <%= comment.comment %>
+                </br>
+                 <% if comment.user == current_user %>
+                   <%= link_to "削除", admin_postimage_comment_path(comment.post_image, comment), method: :delete %>
+                 <% end %>
+              <% end %>
+            </div>
+          </div>
+          <!-- 他のコメントも同様に繰り返す -->
+           <div class="form-group">
+             <%= form_with model: [@postimage, @postimage_comment], url: postimage_comments_path(@postimage.id) do |f| %>
+               <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+               <%= f.submit "送信する" %>
+             <% end %>
+           </div>
         </div>
       </div>
+    </div>
   </div>
 </div>
+
+<!-- Bootstrap JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
