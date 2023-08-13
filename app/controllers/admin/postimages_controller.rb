@@ -12,7 +12,7 @@ class Admin::PostimagesController < ApplicationController
       @postimage_comment = Comment.new
       gon.studio = @postimage #google map用
     rescue
-      flash[:alert] = 'Post not found'
+      flash[:alert] = '情報の取得に失敗。一覧画面に遷移します'
       redirect_to admin_postimages_path
     end
   end
@@ -24,7 +24,7 @@ class Admin::PostimagesController < ApplicationController
   def update
     @postimage = PostImage.find(params[:id])
     if @postimage.update(post_image_params)
-      redirect_to admin_postimage_path(@postimage), notice: "You have updated book successfully."
+      redirect_to admin_postimage_path(@postimage), notice: "変更を保存しました"
     else
       render "edit"
     end

@@ -14,7 +14,7 @@ class Public::PostimagesController < ApplicationController
     @postimage = PostImage.new(post_image_params)
     @postimage.user_id = current_user.id
     if @postimage.save
-      redirect_to postimage_path(@postimage), notice:  "You have created book successfully."
+      redirect_to postimage_path(@postimage), notice:  "投稿に成功しました"
     else
       @postimages = PostImage.page(params[:page])
       render 'index'
@@ -32,7 +32,7 @@ class Public::PostimagesController < ApplicationController
       @postimage_comment = Comment.new
       gon.studio = @postimage #google map用
     rescue
-      flash[:alert] = 'Post not found'
+      flash[:alert] = '情報の取得に失敗。一覧画面に遷移します'
       redirect_to postimages_path
     end
 
@@ -41,7 +41,7 @@ class Public::PostimagesController < ApplicationController
   def update
     @postimage = PostImage.find(params[:id])
     if @postimage.update(post_image_params)
-      redirect_to postimage_path(@postimage), notice: "You have updated book successfully."
+      redirect_to postimage_path(@postimage), notice: "編集に成功しました"
     else
       render "edit"
     end

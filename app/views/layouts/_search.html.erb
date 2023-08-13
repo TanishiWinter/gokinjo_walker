@@ -1,17 +1,23 @@
-<% if user_signed_in? %>
-  <div class="search_form">
-    <%= form_with url: search_path, local: true, method: :get do |f| %>
-      <%= f.text_field :word %>
-      <%= f.select :range, options_for_select([['User'], ['PostImage']]) %>
-      <%= f.submit "検索", class: "btn-sm btn-primary" %>
-    <% end %>
+<div class="container" style="padding-top: 30px;">
+  <div class="row justify-content-md-center">
+    <div class="col-md-auto">
+      <% if user_signed_in? %>
+        <div class="search_form">
+          <%= form_with url: search_path, local: true, method: :get do |f| %>
+            <%= f.text_field :word %>
+            <%= f.select :range, options_for_select([['ユーザー'], ['地名']]) %>
+            <%= f.submit "検索", class: "btn-sm btn-primary" %>
+          <% end %>
+        </div>
+      <% elsif admin_signed_in? %>
+        <div class="search_form">
+          <%= form_with url: admin_search_path, local: true, method: :get do |f| %>
+            <%= f.text_field :word %>
+            <%= f.select :range, options_for_select([['ユーザー'], ['地名']]) %>
+            <%= f.submit "検索", class: "btn-sm btn-primary" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% elsif admin_signed_in? %>
-  <div class="search_form">
-    <%= form_with url: admin_search_path, local: true, method: :get do |f| %>
-      <%= f.text_field :word %>
-      <%= f.select :range, options_for_select([['User'], ['PostImage']]) %>
-      <%= f.submit "検索", class: "btn-sm btn-primary" %>
-    <% end %>
-  </div>
-<% end %>
+</div>
