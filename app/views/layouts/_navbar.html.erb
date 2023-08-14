@@ -29,7 +29,7 @@
               <%= link_to "投稿一覧", postimages_path, class: 'nav-link'  %>
             </li>
             <li class="nav-item px-3">
-              <%= link_to "お気に入り一覧", follows_user_path(current_user.id), class: 'nav-link'  %>
+              <%= link_to "お気に入り一覧", favorites_user_path(current_user.id), class: 'nav-link'  %>
             </li>
             <li class="nav-item px-3">
               <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link'  %>
