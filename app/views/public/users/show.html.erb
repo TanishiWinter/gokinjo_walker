@@ -1,7 +1,13 @@
 <div class="container w-75">
   <div class="margin-y">
-      <h2>投稿ユーザー</h2>
-      <%= render 'info', user: @user %>
+    <div class="row">
+      <div class="col-3">
+      </div>
+      <div class="col-6">
+        <h2>投稿ユーザー</h2>
+        <%= render 'info', user: @user %>
+      </div>
+    </div>
       <h2>投稿一覧</h2>
       <%= render 'public/postimages/index',postimages: @postimages %>
       <%= paginate @postimages %>

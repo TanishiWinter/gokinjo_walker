@@ -1,31 +1,25 @@
 <table class='table'>
   <tr><%= image_tag user.get_profile_image(100, 100)  %></tr>
   <tr>
-	  <th>名前</th>
-	  <th><%= user.name %></th>
+	  <th class="text-nowrap">名前</th>
+	  <th class="text-nowrap"><%= user.name %></th>
   </tr>
   <tr>
-	  <th>紹介文</th>
+	  <th class="text-nowrap">紹介文</th>
 	  <th><%= user.introduction %></th>
   </tr>
   <tr>
 	  <tr>
-      <th>フォロー</th>
-      <th>
-        <%= user.following_users.count %>
-      </th>
-      <th>
+      <th class="text-nowrap">フォロー数:<%= user.following_users.count %></th>
+      <th class="text-nowrap">
         <%= link_to follows_user_path(user) do %>
           <p>フォロー一覧へ</p>
         <% end %>&nbsp;&nbsp;
       </th>
     </tr>
     <tr>
-      <th>フォロワー</th>
-      <th>
-        <%= user.follower_users.count %>
-      </th>
-      <th>
+      <th class="text-nowrap">フォロワー数:<%= user.follower_users.count %></th>
+      <th class="text-nowrap">
         <%= link_to followers_user_path(user) do %>
           <p>フォロワー一覧へ</p>
         <% end %>
