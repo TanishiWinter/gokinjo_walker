@@ -38,7 +38,7 @@ class Public::UsersController < ApplicationController
   end
 
   def withdraw
-    user = user.find(current_customer.id)
+    user = User.find(current_user.id)
     user.update(is_deleted: true)
     reset_session
     flash[:notice] = "正常に退会いたしました"

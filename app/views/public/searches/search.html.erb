@@ -1,7 +1,6 @@
-<div class="margin-y container">
-  <div class="row">
-    <main class="col-md-9">
-      <% if @range == "User" %>
+<div class="container w-75">
+  <div class="margin-y">
+      <% if @range == "ユーザー" %>
         <h2>"<%= @word %>"を含むユーザーが<%= @users.count %>件あります</h2>
         <%= render 'admin/users/index', users: @users %>
         <%= paginate @users %>
@@ -10,6 +9,5 @@
         <%= render 'public/postimages/index', postimages: @postimage_address %>
         <%= paginate @postimage_address %>
       <% end %>
-    </main>
   </div>
 </div>

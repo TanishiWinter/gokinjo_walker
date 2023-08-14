@@ -1,15 +1,13 @@
-<div class="margin-y container">
-  <div class="row">
-    <main class="col-md-9">
-      <% if @range == "User" %>
-        <h2>"<%= @word %>"を含むユーザーが<%= @users.count %>件あります</h2>
+<div class="container w-75">
+  <div class="margin-y">
+      <% if @range == "ユーザー" %>
+        <h2>"<%= @word %>"を含むユーザーが<%= @users.count %>件ヒットしました</h2>
         <%= render 'admin/users/index', users: @users %>
         <%= paginate @users %>
       <% else %>
-        <h2>"<%= @word %>"を含む地域が<%= @postimage_address.count %>件あります</h2>
+        <h2>"<%= @word %>"を含む地域が<%= @postimage_address.count %>件ヒットしました</h2>
         <%= render 'public/postimages/index', postimages: @postimage_address %>
         <%= paginate @postimage_address %>
       <% end %>
-    </main>
   </div>
 </div>
