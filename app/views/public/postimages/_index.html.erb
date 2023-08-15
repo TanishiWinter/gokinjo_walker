@@ -12,6 +12,7 @@
             <div class="card-body">
               <h4 class="card-title">タイトル:<%= link_to postimage.title,postimage_path(postimage.id) %></h4>
               <h5 class="card-text">投稿者:<%=link_to postimage.user.name,user_path(postimage.user.id) %></h5>
+              <p class="card-text">撮影場所:<%= postimage.address %></p>
               <p class="card-text">説明:<%= postimage.body %></p>
               <p class="card-text">
                 <div id="favorite_buttons_<%= postimage.id %>" >

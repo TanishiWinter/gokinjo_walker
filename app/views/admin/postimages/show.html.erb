@@ -18,6 +18,7 @@
               <%=link_to @postimage.user.name,admin_user_path(@postimage.user.id) %>
             <% end %>
           </p>
+          <p class="card-text">撮影場所:<%= @postimage.address %></p>
           <p class="card-text">紹介文:<%= @postimage.body %></p>
 
           <div style="padding-top: 30px; padding-bottom: 30px;">
