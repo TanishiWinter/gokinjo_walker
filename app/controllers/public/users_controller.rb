@@ -66,6 +66,9 @@ class Public::UsersController < ApplicationController
     unless @user == current_user
       redirect_to user_path(current_user)
     end
+    if @user.email == "guest@example.com"
+      redirect_to user_path(current_user) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+    end
   end
 
 end
