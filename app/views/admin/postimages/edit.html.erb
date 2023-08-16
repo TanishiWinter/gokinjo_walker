@@ -1,7 +1,7 @@
 <div class="container" style="width: fit-content">
   <div class="sub_container_position">
     <h4><span>投稿内容編集</span></h4>
-    <%= form_with model: @postimage, url: postimage_path(@postimage.id) do |f| %>
+    <%= form_with model: @postimage, url: admin_postimage_path(@postimage.id) do |f| %>
     <%= render "layouts/form_errors", model: @postimage %>
     <%= render 'public/postimages/form', f: f %>
     <div class="actions text-center">

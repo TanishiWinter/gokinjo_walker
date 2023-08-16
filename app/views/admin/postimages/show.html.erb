@@ -43,15 +43,11 @@
             <!-- Asynchronously load the Google Maps API with the callback to initMap function -->
             <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap" async defer></script>
           </div>
-          <td>
-              <% if @postimage.user == current_user %>
-                <%= link_to "編集する", edit_admin_postimage_path(@postimage.id), class: "btn btn-success padding-x" %>
-              <% end %>
+            <td>
+              <%= link_to "編集する", edit_admin_postimage_path(@postimage.id), class: "btn btn-success padding-x" %>
             </td>
             <td>
-              <% if @postimage.user == current_user %>
-                <%= link_to 'Destroy', admin_postimage_path(@postimage.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%>
-              <% end %>
+              <%= link_to 'Destroy', admin_postimage_path(@postimage.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%>
             </td>
           <h4 class="mb-3">コメント</h4><p>コメント件数：<%= @postimage.comments.count %></p>
           <div class="media mb-3">
@@ -61,9 +57,7 @@
                 <%= comment.created_at.strftime('%Y/%m/%d') %></br>
                  <%= comment.comment %>
                 </br>
-                 <% if comment.user == current_user %>
-                   <%= link_to "削除", admin_postimage_comment_path(comment.post_image, comment), method: :delete %>
-                 <% end %>
+                  <%= link_to "削除", admin_postimage_comment_path(comment.post_image, comment), method: :delete %>
               <% end %>
             </div>
           </div>

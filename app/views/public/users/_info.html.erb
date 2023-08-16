@@ -37,13 +37,11 @@
   </tr>
 </table>
 <% if current_user == user %>
-  <% if user.email != "guest@example.com" %>
-  <div class='row'>
-    <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
-      <p>プロフィール編集</p>
-    <% end %>
-  </div>
+<div class='row'>
+  <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
+    <p>プロフィール編集</p>
   <% end %>
+</div>
 <div class='row'>
   <%= link_to new_postimage_path(user), class: "btn btn-outline-secondary btn-block" do %>
     <p>写真の投稿</p>

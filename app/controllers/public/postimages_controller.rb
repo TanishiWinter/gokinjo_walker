@@ -1,5 +1,6 @@
 class Public::PostimagesController < ApplicationController
 
+  before_action :is_matching_login_postimage, only: [:update, :edit]
   before_action :set_cache_headers
 
   def new
@@ -22,7 +23,13 @@ class Public::PostimagesController < ApplicationController
   end
 
   def edit
-    @postimage = PostImage.find(params[:id])
+    begin
+      is_matching_login_postimage
+      @postimage = PostImage.find(params[:id])
+    rescue
+      flash[:alert] = '情報の取得に失敗。一覧画面に遷移します'
+      redirect_to postimages_path
+    end
   end
 
   def show
@@ -39,6 +46,7 @@ class Public::PostimagesController < ApplicationController
   end
 
   def update
+    is_matching_login_postimage
     @postimage = PostImage.find(params[:id])
     if @postimage.update(post_image_params)
       redirect_to postimage_path(@postimage), notice: "編集に成功しました"
@@ -65,7 +73,8 @@ class Public::PostimagesController < ApplicationController
     params.require(:post_image).permit(:title, :body, :address, :is_active, :image, :latitude, :longitude)
   end
 
-  def is_matching_login_user
+
+  def is_matching_login_postimage
     postimage = PostImage.find(params[:id])
     if(postimage.user_id != current_user.id)
       redirect_to postimages_path
