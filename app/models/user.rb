@@ -13,6 +13,9 @@ class User < ApplicationRecord
   has_many :following_users, through: :follower, source: :followed # 自分がフォローしている人
   has_many :follower_users, through: :followed, source: :follower # 自分をフォローしている人
 
+  validates :name, presence:true, length: { minimum: 2, maximum: 30 }, uniqueness: true
+  validates :introduction, presence:true, length: { maximum: 50 }
+
   has_one_attached :profile_image
 
   def follow(user_id)

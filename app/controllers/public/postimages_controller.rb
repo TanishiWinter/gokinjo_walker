@@ -18,7 +18,7 @@ class Public::PostimagesController < ApplicationController
       redirect_to postimage_path(@postimage), notice:  "投稿に成功しました"
     else
       @postimages = PostImage.page(params[:page])
-      render 'index'
+      render 'new'
     end
   end
 
