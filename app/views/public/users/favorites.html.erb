@@ -2,7 +2,7 @@
   <div class="margin-y">
     <h2>投稿一覧</h2>
     <% if @favorite_postimages.empty? %>
-    <span>ユーザーはいません</span>
+    <span>お気に入りはありません</span>
     <% else%>
       <%= render 'public/postimages/index', postimages: @favorite_postimages %>
     <% end %>

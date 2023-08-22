@@ -5,22 +5,24 @@ class Public::UsersController < ApplicationController
 
   def follows
     user = User.find(params[:id])
-    @users = user.following_users.page(params[:page])
+    @users = user.following_users.page(params[:page]).order(created_at: :desc)
   end
 
   # フォロワー一覧
   def followers
     user = User.find(params[:id])
-    @users = user.follower_users.page(params[:page])
+    @users = user.follower_users.page(params[:page]).order(created_at: :desc)
   end
 
   def index
-    @users = User.page(params[:page])
+    @users = User.page(params[:page]).order(created_at: :desc)
   end
 
   def show
     @user = User.find(params[:id])
-    @postimages = @user.post_images.page(params[:page])
+    @postimages = @user.post_images.order(created_at: :desc).page(params[:page])
+    #詳細画面で非表示の投稿を投稿者にだけ表示にする
+    @postimages_notactive = @user.post_images.where.not(is_active: false).order(created_at: :desc).page(params[:page])
     @following_users = @user.following_users
     @follower_users = @user.follower_users
   end

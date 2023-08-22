@@ -8,7 +8,7 @@ class Public::PostimagesController < ApplicationController
   end
 
   def index
-    @postimages = PostImage.where.not(is_active: false).page(params[:page])
+    @postimages = PostImage.where.not(is_active: false).order(created_at: :desc).page(params[:page])
   end
 
   def create

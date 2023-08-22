@@ -9,7 +9,11 @@
       </div>
     </div>
       <h2>投稿一覧</h2>
-      <%= render 'public/postimages/index',postimages: @postimages %>
-      <%= paginate @postimages %>
+      <%if current_user.id == @user.id %>
+        <%= render 'public/postimages/index',postimages: @postimages %>
+      <% else %>
+        <%= render 'public/postimages/index',postimages: @postimages_notactive %>
+      <% end %>
+        <%= paginate @postimages %>
   </div>
 </div>
