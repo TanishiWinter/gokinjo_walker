@@ -8,7 +8,14 @@
       <%= f.submit "編集完了", class: "btn btn-success padding-x" %>
     </div>
     <% end %>
-    <%= link_to 'Show', admin_postimage_path(@postimage) %> |
-  	<%= link_to 'Back', admin_postimage_path(@postimage), class: "back" %>
+
+    <div class="d-flex align-items-center justify-content-center">
+    <%= link_to  admin_postimage_path(@postimage), class: 'btn btn-primary' do %>
+      <span>詳細ページへ</span>
+    <% end %>
+    <%= link_to  admin_postimage_path(@postimage), class: 'back btn btn-danger' do %>
+      <span>戻る</span>
+    <% end %>
+    </div>
   </div>
 </div>
