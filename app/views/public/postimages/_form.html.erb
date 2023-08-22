@@ -26,14 +26,16 @@
     </td>
   </tr>
 
-  <tr>
-    <td>
-      <%= f.label :address, "写真の所在地", class: "label-width" %>
-    </td>
-    <td>
-      <%= f.text_area :address, placeholder: "例:〇〇県〇〇市〇〇町", class: "field-width" %>
-    </td>
-  </tr>
+  <!-- 写真の所在地情報の入力 -->
+   <tr>
+     <td>
+       <%= f.label :address, "写真の所在地", class: "label-width" %>
+     </td>
+     <td>
+       <%= f.text_area :address, placeholder: "例:〇〇県〇〇市〇〇町", class: "field-width" %>
+     </td>
+   </tr>
+
 
   <tr>
     <td>
@@ -49,5 +51,33 @@
         <%= f.label :is_active_false, "非公開" %>
       </span>
     </td>
+  </tr>
+
+  <tr>
+    <td>
+    <%= f.label :latitude %>
+    </td>
+    <td>
+    <%= f.number_field :latitude, step: 'any', id: 'latitude_field' %>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+    <%= f.label :longitude %>
+    </td>
+    <td>
+    <%= f.number_field :longitude, step: 'any', id: 'longitude_field' %>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+    <%= f.label :search_location %>
+    </td>
+    <td>
+    <%= text_field_tag :search_location, nil, id: 'search_location_field' %>
+    <button type="button" id="search_button">Search</button>
+   </td>
   </tr>
 </table>

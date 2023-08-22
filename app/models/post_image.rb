@@ -9,8 +9,11 @@ class PostImage < ApplicationRecord
   validates :address,presence:true
   validates :body,presence:true,length:{maximum:200}
 
-  geocoded_by :address
-  after_validation :geocode, if: :address_changed?
+  # geocoded_by :address
+  # after_validation :geocode, if: :address_changed?
+  # geocoded_byは使用しないため一時コメントアウト
+  # geocoded_by :address
+  # after_validation :geocode, if: ->(obj) { obj.address.present? && obj.address_changed? }
 
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)

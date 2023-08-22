@@ -5,22 +5,6 @@
     <%= render "layouts/form_errors", model: @postimage %>
     <%= render 'public/postimages/form', f: f %>
 
-    <div class="field">
-    <%= f.label :latitude %>
-    <%= f.number_field :latitude, step: 'any', id: 'latitude_field' %>
-  </div>
-
-  <div class="field">
-    <%= f.label :longitude %>
-    <%= f.number_field :longitude, step: 'any', id: 'longitude_field' %>
-  </div>
-
-  <div class="field">
-    <%= f.label :search_location %>
-    <%= text_field_tag :search_location, nil, id: 'search_location_field' %>
-    <button type="button" id="search_button">Search</button>
-  </div>
-
   <div style="width: 100%; height: 400px;">
     <div id="map" style="width: 100%; height: 100%;"></div>
   </div>
