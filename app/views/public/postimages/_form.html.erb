@@ -53,6 +53,7 @@
     </td>
   </tr>
 
+<% if user_signed_in? %>
   <tr>
     <td>
     <%= f.label :latitude %>
@@ -80,4 +81,5 @@
     <button type="button" id="search_button">Search</button>
    </td>
   </tr>
+<% end %>
 </table>

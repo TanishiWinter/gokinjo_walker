@@ -56,15 +56,16 @@
           <h4 class="mb-3">コメント</h4><p>コメント件数：<%= @postimage.comments.count %></p>
           <div class="media mb-3">
             <div class="media-body">
-              <% @postimage.comments.each do |comment| %>
+              <% @postimage_comments.each do |comment| %>
                 <%= image_tag comment.user.get_profile_image(50, 50) %><h5 class="mt-0"><%= comment.user.name %></h5>
                 <%= comment.created_at.strftime('%Y/%m/%d') %></br>
-                 <%= comment.comment %>
+                 <%= comment.comment %></br>
 
                  <% if comment.user == current_user %>
                    <%= link_to "削除", postimage_comment_path(comment.post_image, comment), method: :delete %></br>
                  <% end %>
               <% end %>
+              <%= paginate @postimage_comments %>
             </div>
           </div>
           <!-- 他のコメントも同様に繰り返す -->

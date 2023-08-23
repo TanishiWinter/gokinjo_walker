@@ -52,22 +52,16 @@
           <h4 class="mb-3">コメント</h4><p>コメント件数：<%= @postimage.comments.count %></p>
           <div class="media mb-3">
             <div class="media-body">
-              <% @postimage.comments.each do |comment| %>
+              <% @postimage_comments.each do |comment| %>
                 <%= image_tag comment.user.get_profile_image(50, 50) %><h5 class="mt-0"><%= comment.user.name %></h5>
                 <%= comment.created_at.strftime('%Y/%m/%d') %></br>
                  <%= comment.comment %>
                 </br>
                   <%= link_to "削除", admin_postimage_comment_path(comment.post_image, comment), method: :delete %>
               <% end %>
+              <%= paginate @postimage_comments %>
             </div>
           </div>
-          <!-- 他のコメントも同様に繰り返す -->
-           <div class="form-group">
-             <%= form_with model: [@postimage, @postimage_comment], url: postimage_comments_path(@postimage.id) do |f| %>
-               <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-               <%= f.submit "送信する" %>
-             <% end %>
-           </div>
         </div>
       </div>
     </div>

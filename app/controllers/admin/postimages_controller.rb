@@ -10,6 +10,7 @@ class Admin::PostimagesController < ApplicationController
     begin
       @postimage = PostImage.find(params[:id])
       @postimage_comment = Comment.new
+      @postimage_comments = @postimage.comments.page(params[:page])
       gon.studio = @postimage #google map用
     rescue
       flash[:alert] = '情報の取得に失敗。一覧画面に遷移します'
