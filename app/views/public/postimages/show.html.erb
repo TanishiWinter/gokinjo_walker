@@ -54,20 +54,23 @@
               <% end %>
             </td>
           <h4 class="mb-3">コメント</h4><p>コメント件数：<%= @postimage.comments.count %></p>
-          <div class="media mb-3">
-            <div class="media-body">
-              <% @postimage_comments.each do |comment| %>
-                <%= image_tag comment.user.get_profile_image(50, 50) %><h5 class="mt-0"><%= comment.user.name %></h5>
-                <%= comment.created_at.strftime('%Y/%m/%d') %></br>
-                 <%= comment.comment %></br>
+
+          <% @postimage_comments.each do |comment| %>
+          <div class="card">
+            <div class="card-body">
+               <div class="card-title">
+                <h5>投稿者:<%= image_tag comment.user.get_profile_image(50, 50) %><%= comment.user.name %></h5>
+                <h6>投稿日付:<%= comment.created_at.strftime('%Y/%m/%d') %></h6></div>
+                 <p class="card-text">コメント:<%= comment.comment %></p>
 
                  <% if comment.user == current_user %>
-                   <%= link_to "削除", postimage_comment_path(comment.post_image, comment), method: :delete %></br>
+                   <%= link_to "削除", postimage_comment_path(comment.post_image, comment), method: :delete %>
                  <% end %>
-              <% end %>
+               </div>
+             </div>
+          <% end %>
+
               <%= paginate @postimage_comments, theme: 'twitter-bootstrap-4' %>
-            </div>
-          </div>
           <!-- 他のコメントも同様に繰り返す -->
            <div class="form-group">
              <%= form_with model: [@postimage, @postimage_comment], url: postimage_comments_path(@postimage.id) do |f| %>
