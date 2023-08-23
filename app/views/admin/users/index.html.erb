@@ -2,6 +2,6 @@
   <div class="margin-y">
     <h4>会員一覧</h4>
     <%= render 'admin/users/index', users: @users %>
-    <%= paginate @users %>
+    <%= paginate @users, theme: 'twitter-bootstrap-4' %>
   </div>
 </div>

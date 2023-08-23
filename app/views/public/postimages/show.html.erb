@@ -65,7 +65,7 @@
                    <%= link_to "削除", postimage_comment_path(comment.post_image, comment), method: :delete %></br>
                  <% end %>
               <% end %>
-              <%= paginate @postimage_comments %>
+              <%= paginate @postimage_comments, theme: 'twitter-bootstrap-4' %>
             </div>
           </div>
           <!-- 他のコメントも同様に繰り返す -->

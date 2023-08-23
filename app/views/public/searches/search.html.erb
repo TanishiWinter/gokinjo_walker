@@ -3,11 +3,11 @@
       <% if @range == "ユーザー" %>
         <h2>"<%= @word %>"を含むユーザーが<%= @users.count %>件あります</h2>
         <%= render 'admin/users/index', users: @users %>
-        <%= paginate @users %>
+        <%= paginate @users, theme: 'twitter-bootstrap-4' %>
       <% else %>
         <h2>"<%= @word %>"を含む地域が<%= @postimage_address.count %>件あります</h2>
         <%= render 'public/postimages/index', postimages: @postimage_address %>
-        <%= paginate @postimage_address %>
+        <%= paginate @postimage_address, theme: 'twitter-bootstrap-4' %>
       <% end %>
   </div>
 </div>

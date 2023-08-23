@@ -59,7 +59,7 @@
                 </br>
                   <%= link_to "削除", admin_postimage_comment_path(comment.post_image, comment), method: :delete %>
               <% end %>
-              <%= paginate @postimage_comments %>
+              <%= paginate @postimage_comments, theme: 'twitter-bootstrap-4' %>
             </div>
           </div>
         </div>

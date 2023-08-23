@@ -5,8 +5,7 @@
     <span>ユーザーはいません</span>
     <% else%>
       <%= render 'public/users/index', users: @users %>
-      <%= paginate @users %>
+      <%= paginate @users, theme: 'twitter-bootstrap-4' %>
     <% end %>
-    <%= paginate @users %>
   </div>
 </div>
