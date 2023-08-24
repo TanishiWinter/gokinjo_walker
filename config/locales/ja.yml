@@ -204,3 +204,19 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+  activerecord:
+    models:
+     user: 会員情報
+    attributes:
+      user:
+       name: ニックネーム
+       email: メールアドレス
+       password: パスワード
+  activerecord:
+    models:
+     post_image: 投稿
+    attributes:
+      post_image:
+       title: タイトル
+       body: 本文
+       address: 都道府県
