@@ -4,7 +4,7 @@
       <tr>
         <td class="text-center"> <!-- 新しい行を追加 -->
           <div class="card" style="width: auto;">
-            <%= link_to admin_postimage_path(postimage.id) do %>
+            <%= link_to admin_postimage_path(postimage.id),data: {"turbolinks"=>false} do %>
               <%= image_tag postimage.get_image(500, 450),
                       class: "img-resize, rounded mx-auto d-block",
                       style: "object-fit: cover;" %>
