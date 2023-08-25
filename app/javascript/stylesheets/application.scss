@@ -4,6 +4,30 @@
   width: 250px;
 }
 
+//navbar
+.navbar_image {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  object-position: center;
+}
+
+//homes
+.homes_image {
+  width: 500px;
+  height: 500px;
+  object-fit: cover;
+  object-position: center;
+}
+
+//abouts
+.abouts_image {
+  width: 600px;
+  height: 600px;
+  object-fit: cover;
+  object-position: center;
+}
+
 html, body {
   height: 100%;
   margin: 0;
@@ -18,7 +42,7 @@ body {
 
 footer {
   margin-top: auto;
-  padding: 30px 0;
+  padding: 10px 0;
   background: #89c7de;
   color: #fff;
   text-align: center;
