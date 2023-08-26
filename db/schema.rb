@@ -54,43 +54,50 @@ ActiveRecord::Schema.define(version: 2023_08_03_204128) do
 
   create_table "comments", force: :cascade do |t|
     t.text "comment"
-    t.integer "user_id"
-    t.integer "post_image_id"
+    t.integer "user_id", null: false
+    t.integer "post_image_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_image_id"], name: "index_comments_on_post_image_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "post_image_id"
+    t.integer "user_id", null: false
+    t.integer "post_image_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_image_id"], name: "index_favorites_on_post_image_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "post_images", force: :cascade do |t|
     t.string "title", default: "", null: false
     t.text "body"
     t.string "address", default: "", null: false
-    t.integer "user_id"
-    t.float "latitude"
-    t.float "longitude"
+    t.integer "user_id", null: false
+    t.decimal "latitude", precision: 9, scale: 6, null: false
+    t.decimal "longitude", precision: 9, scale: 6, null: false
     t.boolean "is_active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_post_images_on_user_id"
   end
 
   create_table "relationships", force: :cascade do |t|
-    t.integer "follower_id"
-    t.integer "followed_id"
+    t.integer "follower_id_id", null: false
+    t.integer "followed_id_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["followed_id_id"], name: "index_relationships_on_followed_id_id"
+    t.index ["follower_id_id"], name: "index_relationships_on_follower_id_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "name", default: "", null: false
-    t.text "introduction", default: "", null: false
+    t.text "introduction"
     t.boolean "is_deleted", default: false, null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -103,4 +110,11 @@ ActiveRecord::Schema.define(version: 2023_08_03_204128) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comments", "post_images"
+  add_foreign_key "comments", "users"
+  add_foreign_key "favorites", "post_images"
+  add_foreign_key "favorites", "users"
+  add_foreign_key "post_images", "users"
+  add_foreign_key "relationships", "followed_ids"
+  add_foreign_key "relationships", "follower_ids"
 end

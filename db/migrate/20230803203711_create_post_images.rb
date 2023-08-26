@@ -5,9 +5,9 @@ class CreatePostImages < ActiveRecord::Migration[6.1]
       t.string :title, null: false, default:""
       t.text :body
       t.string :address, null: false, default:""
-      t.integer :user_id
-      t.float  :latitude
-      t.float  :longitude
+      t.references :user, null: false, foreign_key: true
+      t.decimal :latitude, :precision => 9, :scale => 6, null: false
+      t.decimal :longitude, :precision => 9, :scale => 6, null: false
       t.boolean :is_active, null: false, default: true
 
       t.timestamps
