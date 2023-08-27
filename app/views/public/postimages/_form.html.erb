@@ -56,25 +56,25 @@
 <% if user_signed_in? %>
   <tr>
     <td>
-    <%= f.label :latitude %>
+    <%= f.label :latitude, "緯度" %>
     </td>
     <td>
-    <%= f.number_field :latitude, step: 'any', id: 'latitude_field' %>
-    </td>
-  </tr>
-
-  <tr>
-    <td>
-    <%= f.label :longitude %>
-    </td>
-    <td>
-    <%= f.number_field :longitude, step: 'any', id: 'longitude_field' %>
+    <%= f.number_field :latitude, placeholder: "地域検索で自動入力されます", step: 'any', id: 'latitude_field' %>
     </td>
   </tr>
 
   <tr>
     <td>
-    <%= f.label :search_location %>
+    <%= f.label :longitude, "経度" %>
+    </td>
+    <td>
+    <%= f.number_field :longitude, placeholder: "地域検索で自動入力されます", step: 'any', id: 'longitude_field' %>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+    <%= f.label :search_location, "地域検索" %>
     </td>
     <td>
     <%= text_field_tag :search_location, nil, id: 'search_location_field' %>
