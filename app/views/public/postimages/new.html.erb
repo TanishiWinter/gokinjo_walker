@@ -1,72 +1,71 @@
-<div class="container" style="width: fit-content">
-  <div class="sub_container_position">
-    <h4><span>新規投稿</span></h4>
-    <%= form_with model: @postimage, url: postimages_path do |f| %>
-  <%= render "layouts/form_errors", model: @postimage %>
-  <%= render 'public/postimages/form', f: f %>
+<div class="container"><!--style="width: fit-content">-->
+  <h4>新規投稿</h4>
+  <%= form_with model: @postimage, url: postimages_path do |f| %>
+    <%= render "layouts/form_errors", model: @postimage %>
 
-  <div style="width: 100%; height: 400px;">
-    <div id="map" style="width: 100%; height: 100%;"></div>
-  </div>
+    <%= render 'public/postimages/form', f: f %>
 
-  <div class="actions text-center">
-    <%= f.submit "新規登録", class: "btn btn-success padding-x" %>
-  </div>
+    <div style="width: 100%; height: 400px;">
+      <div id="map" style="width: 100%; height: 100%;"></div>
+    </div>
 
-  <script>
-    var map;
-    var marker;
+    <div class="actions text-center">
+      <%= f.submit "新規登録", class: "btn btn-success padding-x" %>
+    </div>
+  <% end %>
+</div>
 
-    function initMap() {
-      var initialLocation = { lat: 35.6895, lng: 139.6917 }; // 東京の初期位置
-      map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 14,
-        center: initialLocation
-      });
+<script>
+  var map;
+  var marker;
 
-      map.addListener('click', function(event) {
-        placeMarker(event.latLng);
-      });
-
-      var searchButton = document.getElementById('search_button');
-      var searchField = document.getElementById('search_location_field');
-
-      searchButton.addEventListener('click', function() {
-        var geocoder = new google.maps.Geocoder();
-        var address = searchField.value;
-
-        geocoder.geocode({ 'address': address }, function(results, status) {
-          if (status === google.maps.GeocoderStatus.OK) {
-            var location = results[0].geometry.location;
-            map.setCenter(location);
-            placeMarker(location);
-          } else {
-            alert('Geocode was not successful for the following reason: ' + status);
-          }
-        });
-      });
-    }
-
-    function placeMarker(location) {
-    if (marker) {
-      marker.setMap(null);
-    }
-
-    marker = new google.maps.Marker({
-      position: location,
-      map: map
+  function initMap() {
+    var initialLocation = { lat: 35.6895, lng: 139.6917 }; // 東京の初期位置
+    map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 14,
+      center: initialLocation
     });
 
-    // 緯度情報をフォームに設定
-    document.getElementById('latitude_field').value = location.lat();
-    document.getElementById('longitude_field').value = location.lng();
+    map.addListener('click', function(event) {
+      placeMarker(event.latLng);
+    });
+
+    var searchButton = document.getElementById('search_button');
+    var searchField = document.getElementById('search_location_field');
+
+    searchButton.addEventListener('click', function() {
+      var geocoder = new google.maps.Geocoder();
+      var address = searchField.value;
+
+      geocoder.geocode({ 'address': address }, function(results, status) {
+        if (status === google.maps.GeocoderStatus.OK) {
+          var location = results[0].geometry.location;
+          map.setCenter(location);
+          placeMarker(location);
+        } else {
+          alert('Geocode was not successful for the following reason: ' + status);
+        }
+      });
+    });
   }
 
-  </script>
+  function placeMarker(location) {
+  if (marker) {
+    marker.setMap(null);
+  }
 
-  <!-- Asynchronously load the Google Maps API with the callback to initMap function -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap" async defer></script>
+  marker = new google.maps.Marker({
+    position: location,
+    map: map
+  });
 
-<% end %>
-  </div>
-</div>
+  // 緯度情報をフォームに設定
+  document.getElementById('latitude_field').value = location.lat();
+  document.getElementById('longitude_field').value = location.lng();
+}
+
+</script>
+
+<!-- Asynchronously load the Google Maps API with the callback to initMap function -->
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap" async defer></script>
+

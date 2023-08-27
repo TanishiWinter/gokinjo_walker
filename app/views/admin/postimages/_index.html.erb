@@ -1,23 +1,16 @@
-<table class='table table-hover table-inverse'>
-  <tbody>
+
     <% postimages.each do |postimage| %>
-      <tr>
-        <td class="text-center"> <!-- 新しい行を追加 -->
-          <div class="card" style="width: auto;">
+          <div class="card  mb-4" style="width: auto;">
             <%= link_to admin_postimage_path(postimage.id),data: {"turbolinks"=>false} do %>
               <%= image_tag postimage.get_image(500, 450),
-                      class: "img-resize, rounded mx-auto d-block",
-                      style: "object-fit: cover;" %>
+                      class: "img-resize, rounded mx-auto d-block w-100",
+                      style: "max-height: 600px; object-fit: contain;" %>
             <% end %>
-            <div class="card-body">
+            <div class="card-body text-center">
               <h4 class="card-title">タイトル:<%= link_to postimage.title,admin_postimage_path(postimage.id) %></h4>
               <h5 class="card-text">投稿者:<%=link_to postimage.user.name,admin_user_path(postimage.user.id) %></h5>
               <p class="card-text">撮影:<%= postimage.address %></p>
               <p class="card-text">説明:<%= postimage.body %></p>
             </div>
           </div>
-        </td>
-      </tr>
     <% end %>
-  </tbody>
-</table>

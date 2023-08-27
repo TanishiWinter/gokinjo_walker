@@ -1,19 +1,15 @@
 
-<table class='table table-hover table-inverse'>
-  <tbody>
     <% users.each do |user| %>
-      <tr>
-        <td class="text-center"> <!-- 新しい行を追加 -->
-          <div class="card" style="width: auto;">
+          <div class="card mb-4" style="width: auto;">
             <%= link_to admin_user_path(user.id) do %>
               <%= image_tag user.get_profile_image(500, 450),
-                      class: "img-resize, rounded mx-auto d-block",
-                      style: "object-fit: cover;" %>
+                      class: "img-resize, rounded mx-auto d-block w-100",
+                      style: "max-height: 600px; object-fit: contain;" %>
             <% end %>
             <div class="card-body">
-              <h4 class="card-title">投稿者:<%=link_to user.name,admin_user_path(user.id) %></h4>
-              <h5 class="card-text">説明:<%= user.introduction %></h5>
-              <p class="card-text">
+              <h4 class="card-title text-center">投稿者:<%=link_to user.name,admin_user_path(user.id) %></h4>
+              <h5 class="card-text text-center">説明:<%= user.introduction %></h5>
+              <p class="card-text text-center">
                 <% if user.is_deleted %>
                   <span class="text-muted">退会済み</span>
                 <% else %>
@@ -22,8 +18,4 @@
               </p>
             </div>
           </div>
-        </td>
-      </tr>
     <% end %>
-  </tbody>
-</table>

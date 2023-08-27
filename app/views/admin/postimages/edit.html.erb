@@ -1,9 +1,10 @@
-<div class="container" style="width: fit-content">
-  <div class="sub_container_position">
+<div class="container">
     <h4><span>投稿内容編集</span></h4>
     <%= form_with model: @postimage, url: admin_postimage_path(@postimage.id) do |f| %>
     <%= render "layouts/form_errors", model: @postimage %>
+
     <%= render 'public/postimages/form', f: f %>
+
     <div class="actions text-center">
       <%= f.submit "編集完了", class: "btn btn-success padding-x" %>
     </div>
@@ -17,5 +18,4 @@
       <span>戻る</span>
     <% end %>
     </div>
-  </div>
 </div>

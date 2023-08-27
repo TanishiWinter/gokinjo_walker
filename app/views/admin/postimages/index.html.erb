@@ -1,8 +1,10 @@
-<div class="container w-75">
-  <div class="margin-y">
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
       <h2>投稿一覧</h2>
       <%= render 'admin/postimages/index', postimages: @postimages %>
       <%= paginate @postimages, theme: 'twitter-bootstrap-4' %>
+    </div>
   </div>
 </div>
 

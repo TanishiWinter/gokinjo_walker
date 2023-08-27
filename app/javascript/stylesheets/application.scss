@@ -12,7 +12,14 @@
   object-position: center;
 }
 
-//homes
+//abouts
+.abouts_image {
+  width: 600px;
+  height: 600px;
+  object-fit: cover;
+  object-position: center;
+}
+
 .homes_image {
   width: 500px;
   height: 500px;
@@ -20,12 +27,22 @@
   object-position: center;
 }
 
-//abouts
-.abouts_image {
-  width: 600px;
-  height: 600px;
+@media screen and (max-width:480px) {
+//homes
+.homes_image {
+  width: 250px;
+  height: 300px;
   object-fit: cover;
   object-position: center;
+}
+
+.abouts_image {
+  width: 250px;
+  height: 300px;
+  object-fit: cover;
+  object-position: center;
+}
+
 }
 
 html, body {
