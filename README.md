@@ -27,7 +27,8 @@
  - 色々な風景の写真を見たい時に。
 ​
 ## 設計書
-<!--テーマを設定・提出する時点では不要です-->
+## ER図
+<img width="638" alt="image" src="https://github.com/webcamp-jagariko/nagano-cake/assets/121099971/002e85cc-ffb4-4e85-843d-f0d7f3d0e3c5">
 ​
 ## 開発環境
 - OS：Linux(CentOS)
