@@ -28,7 +28,7 @@
 ​
 ## 設計書
 ## ER図
-<img width="638" alt="image" src="https://github.com/webcamp-jagariko/nagano-cake/assets/121099971/002e85cc-ffb4-4e85-843d-f0d7f3d0e3c5">
+- https://app.diagrams.net/#G1tbHjz8qE69yM1F0Zwo-1su3AFj75hJf1
 ​
 ## 開発環境
 - OS：Linux(CentOS)
