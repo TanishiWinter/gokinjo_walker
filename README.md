@@ -26,9 +26,12 @@
  - 在宅ワークで気分転換に短時間の外出をしたい時に。
  - 色々な風景の写真を見たい時に。
 ​
-## 設計書
+### 設計書
 ## ER図
 - https://app.diagrams.net/#G1tbHjz8qE69yM1F0Zwo-1su3AFj75hJf1
+
+## テーブル設計書
+- https://docs.google.com/spreadsheets/d/1JFX1cO9z15DIUy-g0M-vEc-4vumowExk15RGC2mYNno/edit#gid=1951000341
 ​
 ## 開発環境
 - OS：Linux(CentOS)
