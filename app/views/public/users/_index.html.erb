@@ -1,24 +1,24 @@
 
-    <% users.each do |user| %>
-          <div class="card mb-4" style="width: auto;">
-            <%= link_to user_path(user.id) do %>
-              <%= image_tag user.get_profile_image(500, 450),
-                      class: "img-resize, rounded mx-auto d-block w-100",
-                      style: "max-height: 600px; object-fit: contain;" %>
+<% users.each do |user| %>
+      <div class="card mb-4" style="width: auto;">
+        <%= link_to user_path(user.id) do %>
+          <%= image_tag user.get_profile_image(500, 450),
+                  class: "img-resize, rounded mx-auto d-block w-100",
+                  style: "max-height: 300px; object-fit: contain;" %>
+        <% end %>
+        <div class="card-body">
+          <h4 class="card-title text-center">投稿者:<%=link_to user.name,user_path(user.id) %></h4>
+          <h5 class="card-text text-center">説明:<%= user.introduction %></h5>
+          <p class="card-text text-center">
+            <% if current_user != user %>
+              <% if current_user.following?(user) %>
+                <%= link_to 'フォロー外す', user_relationships_path(user.id), method: :delete, class: "btn-sm btn-danger" %>
+              <% else %>
+                <%= link_to 'フォローする', user_relationships_path(user.id), method: :POST, class:"btn-sm btn-success" %>
+              <% end %>
             <% end %>
-            <div class="card-body">
-              <h4 class="card-title text-center">投稿者:<%=link_to user.name,user_path(user.id) %></h4>
-              <h5 class="card-text text-center">説明:<%= user.introduction %></h5>
-              <p class="card-text text-center">
-                <% if current_user != user %>
-                  <% if current_user.following?(user) %>
-                    <%= link_to 'フォロー外す', user_relationships_path(user.id), method: :delete, class: "btn-sm btn-danger" %>
-                  <% else %>
-                    <%= link_to 'フォローする', user_relationships_path(user.id), method: :POST, class:"btn-sm btn-success" %>
-                  <% end %>
-                <% end %>
-              </p>
-            </div>
-          </div>
-    <% end %>
+          </p>
+        </div>
+      </div>
+<% end %>
 

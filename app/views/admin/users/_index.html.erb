@@ -4,7 +4,7 @@
             <%= link_to admin_user_path(user.id) do %>
               <%= image_tag user.get_profile_image(500, 450),
                       class: "img-resize, rounded mx-auto d-block w-100",
-                      style: "max-height: 600px; object-fit: contain;" %>
+                      style: "max-height: 300px; object-fit: contain;" %>
             <% end %>
             <div class="card-body">
               <h4 class="card-title text-center">投稿者:<%=link_to user.name,admin_user_path(user.id) %></h4>
