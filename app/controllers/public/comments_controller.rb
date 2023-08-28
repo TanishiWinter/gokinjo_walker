@@ -1,10 +1,12 @@
 class Public::CommentsController < ApplicationController
   def create
-    postimage = PostImage.find(params[:postimage_id])
-    comment = current_user.comments.new(comment_params)
-    comment.post_image_id = postimage.id
-    comment.save
-    redirect_to postimage_path(postimage)
+   @postimage = PostImage.find(params[:postimage_id])
+   @postimage_comment = Comment.new
+   @postimage_comments = @postimage.comments.page(params[:page])
+   comment = current_user.comments.new(comment_params)
+   comment.post_image_id = @postimage.id
+   comment.save
+    redirect_to postimage_path(params[:postimage_id])
   end
 
   def destroy

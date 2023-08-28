@@ -41,7 +41,8 @@ class Public::PostimagesController < ApplicationController
       gon.studio = @postimage #google map用
     rescue
       flash[:alert] = '情報の取得に失敗。一覧画面に遷移します'
-      redirect_to postimages_path
+      render "show"
+      # redirect_to postimages_path
     end
 
   end
