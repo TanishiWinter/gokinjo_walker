@@ -1,4 +1,6 @@
     <% postimages.each do |postimage| %>
+      <% if postimage.user.is_deleted == true %>
+      <% else %>
           <div class="card mb-4" style="width: auto;">
             <%= link_to postimage_path(postimage.id),data: {"turbolinks"=>false} do %>
               <%= image_tag postimage.get_image(500, 450),
@@ -17,6 +19,7 @@
               </p>
             </div>
           </div>
+        <% end %>
     <% end %>
 
 

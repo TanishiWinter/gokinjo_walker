@@ -15,7 +15,7 @@ class Public::UsersController < ApplicationController
   end
 
   def index
-    @users = User.page(params[:page]).order(created_at: :desc)
+    @users = User.where.not(is_deleted: true).page(params[:page]).order(created_at: :desc)
   end
 
   def show
