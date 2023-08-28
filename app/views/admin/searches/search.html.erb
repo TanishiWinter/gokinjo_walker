@@ -1,4 +1,4 @@
-<div class="container w-75">
+<div class="container">
   <div class="margin-y">
       <% if @range == "ユーザー" %>
         <h2>"<%= @word %>"を含むユーザーが<%= @users.count %>件ヒットしました</h2>
@@ -6,7 +6,7 @@
         <%= paginate @users, theme: 'twitter-bootstrap-4' %>
       <% else %>
         <h2>"<%= @word %>"を含む地域が<%= @postimage_address.count %>件ヒットしました</h2>
-        <%= render 'public/postimages/index', postimages: @postimage_address %>
+        <%= render 'admin/postimages/index', postimages: @postimage_address %>
         <%= paginate @postimage_address, theme: 'twitter-bootstrap-4' %>
       <% end %>
   </div>

@@ -6,12 +6,14 @@ class Public::SearchesController < ApplicationController
     @range = params[:range]
     @word = params[:word]
 
-    if @range == "ユーザー"
-      @users = User.where('name LIKE ?', "%#{@word}%").page(params[:page])
+    if @word == ""
     else
-      @postimage_address = PostImage.where('address LIKE ?', "%#{@word}%").page(params[:page])
+      if @range == "ユーザー"
+        @users = User.where('name LIKE ?', "%#{@word}%").page(params[:page])
+      else
+        @postimage_address = PostImage.where('address LIKE ?', "%#{@word}%").page(params[:page])
+      end
+
     end
-
   end
-
 end
