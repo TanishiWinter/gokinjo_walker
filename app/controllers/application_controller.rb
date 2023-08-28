@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :authenticate_user!, if: :except_action
+  # before_action :authenticate_user!, if: :except_action
 
   def after_sign_out_path_for(resource)
     root_path
@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   end
 
   def except_action
-    unless controller_name == 'homes'
+    unless controller_name == 'public/homes'
       true
     end
   end
