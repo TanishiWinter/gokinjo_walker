@@ -3,7 +3,7 @@
     <h2>お気に入り一覧</h2>
     <% if @favorite_postimages.empty? %>
     <span>お気に入りはありません</span>
-    <% else%>
+    <% else %>
       <%= render 'public/postimages/index', postimages: @favorite_postimages %>
     <% end %>
   </div>

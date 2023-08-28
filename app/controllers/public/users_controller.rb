@@ -52,7 +52,7 @@ class Public::UsersController < ApplicationController
 
   def favorites
     favorites = Favorite.where(user_id: @user.id).pluck(:post_image_id)
-    @favorite_postimages = PostImage.find(favorites)
+    @favorite_postimages = PostImage.order(created_at: :desc).find(favorites)
   end
 
   private

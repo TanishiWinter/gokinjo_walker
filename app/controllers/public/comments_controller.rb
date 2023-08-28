@@ -9,6 +9,7 @@ class Public::CommentsController < ApplicationController
 
   def destroy
     Comment.find(params[:id]).destroy
+    @comment = Comment.new
     redirect_to postimage_path(params[:postimage_id])
   end
 

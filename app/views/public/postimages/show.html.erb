@@ -72,8 +72,10 @@
 
               <%= paginate @postimage_comments, theme: 'twitter-bootstrap-4' %>
           <!-- 他のコメントも同様に繰り返す -->
+
            <div class="form-group">
              <%= form_with model: [@postimage, @postimage_comment], url: postimage_comments_path(@postimage.id) do |f| %>
+               <%= render "layouts/form_errors", model: @postimage_comment %>
                <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
                <%= f.submit "送信する" %>
              <% end %>
