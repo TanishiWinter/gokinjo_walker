@@ -47,7 +47,7 @@
               <%= link_to "編集する", edit_admin_postimage_path(@postimage.id), class: "btn btn-success padding-x" %>
             </td>
             <td>
-              <%= link_to 'Destroy', admin_postimage_path(@postimage.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%>
+              <%= link_to '投稿削除', admin_postimage_path(@postimage.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%>
             </td>
           <h4 class="mb-3">コメント</h4><p>コメント件数：<%= @postimage.comments.count %></p>
             <% @postimage_comments.each do |comment| %>

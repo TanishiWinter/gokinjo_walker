@@ -50,7 +50,7 @@
             </td>
             <td>
               <% if @postimage.user == current_user %>
-                <%= link_to 'Destroy', postimage_path(@postimage.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%>
+                <%= link_to '投稿削除', postimage_path(@postimage.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%>
               <% end %>
             </td>
           <h4 class="mb-3">コメント</h4><p>コメント件数：<%= @postimage.comments.count %></p>
