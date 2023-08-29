@@ -12,9 +12,9 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   end
 
-  def except_action
-    unless controller_name == 'public/homes'
-      true
-    end
-  end
+  # def except_action
+  #   unless controller_name == 'public/homes'
+  #     true
+  #   end
+  # end
 end

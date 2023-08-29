@@ -32,7 +32,7 @@ class Public::SessionsController < Devise::SessionsController
 
   def reject_invalid_user
     user = User.find_by(email: params[:user][:email])
-    # 会員情報が存在する場合
+    # ユーザー情報が存在する場合
     if user
       if user.valid_password?(params[:user][:password]) && (user.is_deleted == true )
         flash[:notice] = "退会済みです。再度ご登録をしてご利用ください"

@@ -206,7 +206,7 @@ ja:
     pm: 午後
   activerecord:
     models:
-     user: 会員情報
+     user: ユーザー情報
     attributes:
       user:
        name: ニックネーム
