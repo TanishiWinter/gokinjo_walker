@@ -6,6 +6,9 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+# タイムゾーンを東京に設定
+config.time_zone = 'Tokyo'
+
 module GokinjoWalker
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
